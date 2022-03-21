@@ -27,6 +27,8 @@ body {
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: var(--on-surface);
+  padding: 0;
+  box-sizing: border-box;
 }
 .surface-0 {
   background-color: var(--surface-dp-0);

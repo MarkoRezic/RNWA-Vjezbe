@@ -5,55 +5,53 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../index.css" />
     <title>HR schema - Zaposlenici - TIM 2</title>
-
-    <script>
-      function loadData() {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
-            console.log(xmlhttp.responseText);
-          }
-        };
-        xmlhttp.open("GET", "http://localhost/load_zaposlenici.php", true);
-        xmlhttp.send();
-      }
-      function showHint(str) {
-        if (str.length == 0) {
-          document.getElementById("txtHint").innerHTML = "";
-          return;
-        } else {
-          var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-              document.getElementById("txtHint").innerHTML =
-                xmlhttp.responseText;
-            }
-          };
-          xmlhttp.open(
-            "GET",
-            "http://localhost/search_zaposlenici.php?s=" + str,
-            true
-          );
-          xmlhttp.send();
-        }
-      }
-    </script>
   </head>
 
-  <body onload="loadData()">
+  <script>
+    function loadEmployees() {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          document.getElementById("resultDiv").innerHTML = xmlhttp.responseText;
+        }
+      };
+      xmlhttp.open("GET", "http://localhost/load_zaposlenici.php", true);
+      xmlhttp.send();
+    }
+    function searchEmployees(str) {
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          document.getElementById("resultDiv").innerHTML = xmlhttp.responseText;
+        }
+      };
+      xmlhttp.open(
+        "GET",
+        "http://localhost/search_zaposlenici.php?s=" + str,
+        true
+      );
+      xmlhttp.send();
+    }
+  </script>
+
+  <body onload="loadEmployees()">
     <header class="nav-header surface-12">
       <nav class="navigation">
-        <a href="index.html">Naslovna</a>
-        <a href="odjeli.html">Odjeli</a>
-        <a href="zaposlenici.html">Zaposlenici</a>
-        <a href="poslovi.html">Poslovi</a>
+        <a href="../index.html">Naslovna</a>
+        <a href="../odjeli.html">Odjeli</a>
+        <a href="../zaposlenici.html">Zaposlenici</a>
+        <a href="../poslovi.html">Poslovi</a>
       </nav>
     </header>
+
+    <div class="divider surface-8 mv5"></div>
+
     <header class="nav-header surface-12">
       <nav class="navigation">
-        <a class="active">Naslovna</a>
-        <a href="../search_jquery/search_zaposlenici_jquery.html">Odjeli</a>
+        <a class="active">JS Pretraga</a>
+        <a href="../search_jquery/search_zaposlenici_jquery.html"
+          >JQuery Pretraga</a
+        >
       </nav>
     </header>
 
@@ -63,19 +61,19 @@
       <section class="main-content">
         <article>
           <header>
-            <h2 class="emph-medium">Zaposlenici</h2>
+            <h2 class="emph-medium">Zaposlenici pretraga</h2>
 
             <div class="divider surface-8"></div>
           </header>
           <form>
-            Search:
             <input
               type="text"
-              class="search surface-2"
-              onkeyup="showHint(this.value)"
+              placeholder="Pretraga..."
+              class="search surface-12"
+              onkeyup="searchEmployees(this.value)"
             />
           </form>
-          <div id="txtHint"></div>
+          <div id="resultDiv"></div>
         </article>
       </section>
     </div>

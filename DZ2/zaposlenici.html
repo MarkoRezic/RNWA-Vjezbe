@@ -1,740 +1,312 @@
 <!DOCTYPE html>
 
 <html>
-
-<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="index.css" />
     <title>HR schema - Zaposlenici - TIM 2</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="nav-header surface-12">
-        <nav class="navigation">
-            <a href="index.html">Naslovna</a>
-            <a href="odjeli.html">Odjeli</a>
-            <a class="active">Zaposlenici</a>
-            <a href="poslovi.html">Poslovi</a>
-        </nav>
+      <nav class="navigation">
+        <a href="index.html">Naslovna</a>
+        <a href="odjeli.html">Odjeli</a>
+        <a class="active">Zaposlenici</a>
+        <a href="poslovi.html">Poslovi</a>
+      </nav>
     </header>
 
     <div class="sidebar-content-wrapper">
-        <div class="sidebar"></div>
+      <div class="sidebar"></div>
 
-        <section class="main-content">
-            <article>
-                <header>
-                    <h2 class="emph-medium">Zaposlenici</h2>
+      <section class="main-content">
+        <article>
+          <header>
+            <div class="row align-center justify-between">
+              <h2 class="emph-medium">Zaposlenici</h2>
+              <div
+                onclick="location.href='search/search_zaposlenici.html'"
+                class="search-button"
+              >
+                <img class="search-icon" src="./assets/img/search_icon.png" />
+              </div>
+            </div>
 
-                    <div class="divider surface-8"></div>
-
-                </header>
-                <table class="data-table">
-                    <tr>
-                        <th>
-                            Ime
-                        </th>
-                        <th>
-                            Prezime
-                        </th>
-                        <th>
-                            E-mail
-                        </th>
-                        <th>
-                            Broj telefona
-                        </th>
-                        <th>
-                            Odjel
-                        </th>
-                        <th>
-                            Zvanje
-                        </th>
-                        <th>
-                            Menadžer
-                        </th>
-                        <th>
-                            Datum zapošljavanja
-                        </th>
-                        <th>
-                            Plaća
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            Ivan
-                        </td>
-                        <td>
-                            Ivić
-                        </td>
-                        <td>
-                            ivan.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 000 222
-                        </td>
-                        <td>
-                            Strategic Programming
-                        </td>
-                        <td>
-                            Backend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            15.03.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Pero
-                        </td>
-                        <td>
-                            Perić
-                        </td>
-                        <td>
-                            pero.peric@gmail.com
-                        </td>
-                        <td>
-                            063 000 333
-                        </td>
-                        <td>
-                            IT Administration
-                        </td>
-                        <td>
-                            Frontend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            12.03.2022
-                        </td>
-                        <td>
-                            2200
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Ana
-                        </td>
-                        <td>
-                            Anić
-                        </td>
-                        <td>
-                            ana.anic@gmail.com
-                        </td>
-                        <td>
-                            063 000 444
-                        </td>
-                        <td>
-                            Zovko Solutions
-                        </td>
-                        <td>
-                            Graphic Designer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jure
-                        </td>
-                        <td>
-                            Jurić
-                        </td>
-                        <td>
-                            jure.juric@gmail.com
-                        </td>
-                        <td>
-                            063 000 777
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            14.02.2022
-                        </td>
-                        <td>
-                            2700
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Iva
-                        </td>
-                        <td>
-                            Ivic
-                        </td>
-                        <td>
-                            iva.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 000 999
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Backend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            02.03.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Luka
-                        </td>
-                        <td>
-                            Ivić
-                        </td>
-                        <td>
-                            luka.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 111 222
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Rezić
-                        </td>
-                        <td>
-                            05.01.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Denis
-                        </td>
-                        <td>
-                            Perić
-                        </td>
-                        <td>
-                            denis.peric@gmail.com
-                        </td>
-                        <td>
-                            063 111 333
-                        </td>
-                        <td>
-                            IT Administration
-                        </td>
-                        <td>
-                            Graphic Designer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            10.03.2021
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Mara
-                        </td>
-                        <td>
-                            Marić
-                        </td>
-                        <td>
-                            mara.maric@gmail.com
-                        </td>
-                        <td>
-                            063 111 444
-                        </td>
-                        <td>
-                            Zovko Solutions
-                        </td>
-                        <td>
-                            Frontend Developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jure
-                        </td>
-                        <td>
-                            Jurić
-                        </td>
-                        <td>
-                            jure.juric@gmail.com
-                        </td>
-                        <td>
-                            063 111 777
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            14.02.2022
-                        </td>
-                        <td>
-                            2700
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Iva
-                        </td>
-                        <td>
-                            Ivic
-                        </td>
-                        <td>
-                            iva.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 222 999
-                        </td>
-                        <td>
-                            IT Administration
-                        </td>
-                        <td>
-                            Backend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            02.03.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Denis
-                        </td>
-                        <td>
-                            Perić
-                        </td>
-                        <td>
-                            denis.peric@gmail.com
-                        </td>
-                        <td>
-                            063 222 333
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Graphic Designer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            10.03.2021
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Mara
-                        </td>
-                        <td>
-                            Marić
-                        </td>
-                        <td>
-                            mara.maric@gmail.com
-                        </td>
-                        <td>
-                            063 222 444
-                        </td>
-                        <td>
-                            Zovko Solutions
-                        </td>
-                        <td>
-                            Frontend Developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jure
-                        </td>
-                        <td>
-                            Jurić
-                        </td>
-                        <td>
-                            jure.juric@gmail.com
-                        </td>
-                        <td>
-                            063 222 777
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            14.02.2022
-                        </td>
-                        <td>
-                            2700
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Ivan
-                        </td>
-                        <td>
-                            Ivić
-                        </td>
-                        <td>
-                            ivan.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 000 222
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Backend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            15.03.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Pero
-                        </td>
-                        <td>
-                            Perić
-                        </td>
-                        <td>
-                            pero.peric@gmail.com
-                        </td>
-                        <td>
-                            063 000 333
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Frontend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            12.03.2022
-                        </td>
-                        <td>
-                            2200
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Ana
-                        </td>
-                        <td>
-                            Anić
-                        </td>
-                        <td>
-                            ana.anic@gmail.com
-                        </td>
-                        <td>
-                            063 000 444
-                        </td>
-                        <td>
-                            Strategic Programming
-                        </td>
-                        <td>
-                            Graphic Designer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jure
-                        </td>
-                        <td>
-                            Jurić
-                        </td>
-                        <td>
-                            jure.juric@gmail.com
-                        </td>
-                        <td>
-                            063 000 777
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            14.02.2022
-                        </td>
-                        <td>
-                            2700
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Iva
-                        </td>
-                        <td>
-                            Ivic
-                        </td>
-                        <td>
-                            iva.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 000 999
-                        </td>
-                        <td>
-                            IT centar
-                        </td>
-                        <td>
-                            Backend developer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            02.03.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Luka
-                        </td>
-                        <td>
-                            Ivić
-                        </td>
-                        <td>
-                            luka.ivic@gmail.com
-                        </td>
-                        <td>
-                            063 111 222
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Rezić
-                        </td>
-                        <td>
-                            05.01.2022
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Denis
-                        </td>
-                        <td>
-                            Perić
-                        </td>
-                        <td>
-                            denis.peric@gmail.com
-                        </td>
-                        <td>
-                            063 111 333
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Graphic Designer
-                        </td>
-                        <td>
-                            Marko Rezić
-                        </td>
-                        <td>
-                            10.03.2021
-                        </td>
-                        <td>
-                            2000
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Mara
-                        </td>
-                        <td>
-                            Marić
-                        </td>
-                        <td>
-                            mara.maric@gmail.com
-                        </td>
-                        <td>
-                            063 111 444
-                        </td>
-                        <td>
-                            Zovko Solutions
-                        </td>
-                        <td>
-                            Frontend Developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Jure
-                        </td>
-                        <td>
-                            Jurić
-                        </td>
-                        <td>
-                            jure.juric@gmail.com
-                        </td>
-                        <td>
-                            063 111 777
-                        </td>
-                        <td>
-                            Technical Support
-                        </td>
-                        <td>
-                            Fullstack developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            14.02.2022
-                        </td>
-                        <td>
-                            2700
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Mara
-                        </td>
-                        <td>
-                            Marić
-                        </td>
-                        <td>
-                            mara.maric@gmail.com
-                        </td>
-                        <td>
-                            063 111 444
-                        </td>
-                        <td>
-                            Zovko Solutions
-                        </td>
-                        <td>
-                            Frontend Developer
-                        </td>
-                        <td>
-                            Hrvoje Zovko
-                        </td>
-                        <td>
-                            09.03.2022
-                        </td>
-                        <td>
-                            2100
-                        </td>
-                    </tr>
-                </table>
-            </article>
-        </section>
-
+            <div class="divider surface-8"></div>
+          </header>
+          <table class="data-table">
+            <tr>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>E-mail</th>
+              <th>Broj telefona</th>
+              <th>Odjel</th>
+              <th>Zvanje</th>
+              <th>Menadžer</th>
+              <th>Datum zapošljavanja</th>
+              <th>Plaća</th>
+            </tr>
+            <tr>
+              <td>Ivan</td>
+              <td>Ivić</td>
+              <td>ivan.ivic@gmail.com</td>
+              <td>063 000 222</td>
+              <td>Strategic Programming</td>
+              <td>Backend developer</td>
+              <td>Marko Rezić</td>
+              <td>15.03.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Pero</td>
+              <td>Perić</td>
+              <td>pero.peric@gmail.com</td>
+              <td>063 000 333</td>
+              <td>IT Administration</td>
+              <td>Frontend developer</td>
+              <td>Marko Rezić</td>
+              <td>12.03.2022</td>
+              <td>2200</td>
+            </tr>
+            <tr>
+              <td>Ana</td>
+              <td>Anić</td>
+              <td>ana.anic@gmail.com</td>
+              <td>063 000 444</td>
+              <td>Zovko Solutions</td>
+              <td>Graphic Designer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+            <tr>
+              <td>Jure</td>
+              <td>Jurić</td>
+              <td>jure.juric@gmail.com</td>
+              <td>063 000 777</td>
+              <td>IT centar</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>14.02.2022</td>
+              <td>2700</td>
+            </tr>
+            <tr>
+              <td>Iva</td>
+              <td>Ivic</td>
+              <td>iva.ivic@gmail.com</td>
+              <td>063 000 999</td>
+              <td>IT centar</td>
+              <td>Backend developer</td>
+              <td>Marko Rezić</td>
+              <td>02.03.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Luka</td>
+              <td>Ivić</td>
+              <td>luka.ivic@gmail.com</td>
+              <td>063 111 222</td>
+              <td>IT centar</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Rezić</td>
+              <td>05.01.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Denis</td>
+              <td>Perić</td>
+              <td>denis.peric@gmail.com</td>
+              <td>063 111 333</td>
+              <td>IT Administration</td>
+              <td>Graphic Designer</td>
+              <td>Marko Rezić</td>
+              <td>10.03.2021</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Mara</td>
+              <td>Marić</td>
+              <td>mara.maric@gmail.com</td>
+              <td>063 111 444</td>
+              <td>Zovko Solutions</td>
+              <td>Frontend Developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+            <tr>
+              <td>Jure</td>
+              <td>Jurić</td>
+              <td>jure.juric@gmail.com</td>
+              <td>063 111 777</td>
+              <td>Technical Support</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>14.02.2022</td>
+              <td>2700</td>
+            </tr>
+            <tr>
+              <td>Iva</td>
+              <td>Ivic</td>
+              <td>iva.ivic@gmail.com</td>
+              <td>063 222 999</td>
+              <td>IT Administration</td>
+              <td>Backend developer</td>
+              <td>Marko Rezić</td>
+              <td>02.03.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Denis</td>
+              <td>Perić</td>
+              <td>denis.peric@gmail.com</td>
+              <td>063 222 333</td>
+              <td>Technical Support</td>
+              <td>Graphic Designer</td>
+              <td>Marko Rezić</td>
+              <td>10.03.2021</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Mara</td>
+              <td>Marić</td>
+              <td>mara.maric@gmail.com</td>
+              <td>063 222 444</td>
+              <td>Zovko Solutions</td>
+              <td>Frontend Developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+            <tr>
+              <td>Jure</td>
+              <td>Jurić</td>
+              <td>jure.juric@gmail.com</td>
+              <td>063 222 777</td>
+              <td>IT centar</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>14.02.2022</td>
+              <td>2700</td>
+            </tr>
+            <tr>
+              <td>Ivan</td>
+              <td>Ivić</td>
+              <td>ivan.ivic@gmail.com</td>
+              <td>063 000 222</td>
+              <td>Technical Support</td>
+              <td>Backend developer</td>
+              <td>Marko Rezić</td>
+              <td>15.03.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Pero</td>
+              <td>Perić</td>
+              <td>pero.peric@gmail.com</td>
+              <td>063 000 333</td>
+              <td>IT centar</td>
+              <td>Frontend developer</td>
+              <td>Marko Rezić</td>
+              <td>12.03.2022</td>
+              <td>2200</td>
+            </tr>
+            <tr>
+              <td>Ana</td>
+              <td>Anić</td>
+              <td>ana.anic@gmail.com</td>
+              <td>063 000 444</td>
+              <td>Strategic Programming</td>
+              <td>Graphic Designer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+            <tr>
+              <td>Jure</td>
+              <td>Jurić</td>
+              <td>jure.juric@gmail.com</td>
+              <td>063 000 777</td>
+              <td>IT centar</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>14.02.2022</td>
+              <td>2700</td>
+            </tr>
+            <tr>
+              <td>Iva</td>
+              <td>Ivic</td>
+              <td>iva.ivic@gmail.com</td>
+              <td>063 000 999</td>
+              <td>IT centar</td>
+              <td>Backend developer</td>
+              <td>Marko Rezić</td>
+              <td>02.03.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Luka</td>
+              <td>Ivić</td>
+              <td>luka.ivic@gmail.com</td>
+              <td>063 111 222</td>
+              <td>Technical Support</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Rezić</td>
+              <td>05.01.2022</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Denis</td>
+              <td>Perić</td>
+              <td>denis.peric@gmail.com</td>
+              <td>063 111 333</td>
+              <td>Technical Support</td>
+              <td>Graphic Designer</td>
+              <td>Marko Rezić</td>
+              <td>10.03.2021</td>
+              <td>2000</td>
+            </tr>
+            <tr>
+              <td>Mara</td>
+              <td>Marić</td>
+              <td>mara.maric@gmail.com</td>
+              <td>063 111 444</td>
+              <td>Zovko Solutions</td>
+              <td>Frontend Developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+            <tr>
+              <td>Jure</td>
+              <td>Jurić</td>
+              <td>jure.juric@gmail.com</td>
+              <td>063 111 777</td>
+              <td>Technical Support</td>
+              <td>Fullstack developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>14.02.2022</td>
+              <td>2700</td>
+            </tr>
+            <tr>
+              <td>Mara</td>
+              <td>Marić</td>
+              <td>mara.maric@gmail.com</td>
+              <td>063 111 444</td>
+              <td>Zovko Solutions</td>
+              <td>Frontend Developer</td>
+              <td>Hrvoje Zovko</td>
+              <td>09.03.2022</td>
+              <td>2100</td>
+            </tr>
+          </table>
+        </article>
+      </section>
     </div>
 
     <footer class="footer surface-12">
-        <p class="emph-high">© 2022 RZSoft</p>
+      <p class="emph-high">© 2022 RZSoft</p>
     </footer>
-</body>
-
+  </body>
 </html>

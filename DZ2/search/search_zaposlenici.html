@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>HR schema - Zaposlenici - TIM 2</title>
+
+    <script>
+      function loadData() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            console.log(xmlhttp.responseText);
+          }
+        };
+        xmlhttp.open("GET", "http://localhost/load_zaposlenici.php", true);
+        xmlhttp.send();
+      }
+      function showHint(str) {
+        if (str.length == 0) {
+          document.getElementById("txtHint").innerHTML = "";
+          return;
+        } else {
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("txtHint").innerHTML =
+                xmlhttp.responseText;
+            }
+          };
+          xmlhttp.open(
+            "GET",
+            "http://localhost/search_zaposlenici.php?s=" + str,
+            true
+          );
+          xmlhttp.send();
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="loadData()">
+    <header class="nav-header surface-12">
+      <nav class="navigation">
+        <a href="index.html">Naslovna</a>
+        <a href="odjeli.html">Odjeli</a>
+        <a href="zaposlenici.html">Zaposlenici</a>
+        <a href="poslovi.html">Poslovi</a>
+      </nav>
+    </header>
+    <header class="nav-header surface-12">
+      <nav class="navigation">
+        <a class="active">Naslovna</a>
+        <a href="../search_jquery/search_zaposlenici_jquery.html">Odjeli</a>
+      </nav>
+    </header>
+
+    <div class="sidebar-content-wrapper">
+      <div class="sidebar"></div>
+
+      <section class="main-content">
+        <article>
+          <header>
+            <h2 class="emph-medium">Zaposlenici</h2>
+
+            <div class="divider surface-8"></div>
+          </header>
+          <form>
+            Search:
+            <input
+              type="text"
+              class="search surface-2"
+              onkeyup="showHint(this.value)"
+            />
+          </form>
+          <div id="txtHint"></div>
+        </article>
+      </section>
+    </div>
+
+    <footer class="footer surface-12">
+      <p class="emph-high">© 2022 RZSoft</p>
+    </footer>
+  </body>
+</html>

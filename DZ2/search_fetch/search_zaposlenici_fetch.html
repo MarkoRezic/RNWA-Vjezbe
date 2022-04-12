@@ -5,30 +5,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="../index.css" />
     <title>HR schema - Zaposlenici - TIM 2</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"
+      integrity="sha512-IsoGB9P1Kjw962zrslxT91OfoKkAnlBfQDdh5HwFvOxwJ8xGV6MuDeAli4TkEMiUqhJVkvpxJBsIS14bSERgxA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
 
   <script>
-    $(document).ready(function () {
-      $.get("http://localhost/load_zaposlenici.php", function (data) {
-        $("#resultDiv").html(data);
-      });
-    });
-
-    $(document).ready(function () {
-      $(".search").keyup(function showHint() {
-        var str = $(".search").val();
-        $.get(
-          "http://localhost/search_zaposlenici.php?s=" + str,
-          function (data) {
-            $("#resultDiv").html(data);
-          }
-        );
-      });
-    });
+    function loadEmployees() {
+      fetch("http://localhost/load_zaposlenici.php")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("resultDiv").innerHTML = data;
+        });
+    }
+    function searchEmployees(str) {
+      fetch("http://localhost/search_zaposlenici.php?s=" + str)
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("resultDiv").innerHTML = data;
+        });
+    }
   </script>
 
-  <body>
+  <body onload="loadEmployees()">
     <header class="nav-header surface-12">
       <nav class="navigation">
         <a href="../index.html">Naslovna</a>
@@ -43,13 +45,13 @@
     <header class="nav-header surface-12">
       <nav class="navigation">
         <a href="../search/search_zaposlenici.html">JS Pretraga</a>
-        <a class="active">JQuery Pretraga</a>
+        <a href="../search_jquery/search_zaposlenici_jquery.html"
+          >JQuery Pretraga</a
+        >
         <a href="../search_axios/search_zaposlenici_axios.html"
           >Axios Pretraga</a
         >
-        <a href="../search_fetch/search_zaposlenici_fetch.html"
-          >Fetch Pretraga</a
-        >
+        <a class="active">Fetch Pretraga</a>
       </nav>
     </header>
 
@@ -59,7 +61,7 @@
       <section class="main-content">
         <article>
           <header>
-            <h2 class="emph-medium">Zaposlenici pretraga JQuery</h2>
+            <h2 class="emph-medium">Zaposlenici pretraga Fetch API</h2>
 
             <div class="divider surface-8"></div>
           </header>
@@ -68,6 +70,7 @@
               type="text"
               placeholder="Pretraga..."
               class="search surface-12"
+              onkeyup="searchEmployees(this.value)"
             />
           </form>
           <div id="resultDiv"></div>

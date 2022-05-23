@@ -6,7 +6,7 @@ function get_employees($id = NULL)
 	$query = "SELECT * FROM employees";
 	if(!is_null($id))
 	{
-		$query .= " WHERE emp_no=".$id." LIMIT 1";
+		$query .= " WHERE employee_id=".$id." LIMIT 1";
 	}
 	$response = array();
 	$result = mysqli_query($connection, $query);
@@ -23,11 +23,18 @@ function insert_employee()
 		global $connection;
 
 		$data = json_decode(file_get_contents('php://input'), true);
-		$employee_bdate	= $data["birth_date"];
-		$employee_fname	= $data["first_name"];
-		$employee_lname	= $data["last_name"];
-		$employee_gender = $data["gender"];
-		$query = "INSERT INTO employees VALUES (NULL,'".$employee_bdate."','".$employee_fname."','".$employee_lname."','".$employee_gender."',DATE(NOW()))";
+		$employee_first_name = $data["first_name"];
+		$employee_last_name	= $data["last_name"];
+		$employee_email = $data["email"];
+		$employee_phone_number = $data["phone_number"];
+		$employee_hire_date = $data["hire_date"];
+		$employee_job_id = $data["job_id"];
+		$employee_salary = $data["salary"];
+		$employee_commission_pct = $data["commission_pct"];
+		$employee_manager_id = $data["manager_id"];
+		$employee_department_id = $data["department_id"];
+		
+		$query = "INSERT INTO employees (first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id) VALUES ('".$employee_first_name."','".$employee_last_name."','".$employee_email."','".$employee_phone_number."','".$employee_hire_date."','".$employee_job_id."','".$employee_salary."','".$employee_commission_pct."','".$employee_manager_id."','".$employee_department_id."')";
 		
 		
 		if(mysqli_query($connection, $query))
@@ -72,15 +79,20 @@ function insert_employee()
 function update_employee($id)
 	{
 		global $connection;
-		$post_vars = json_decode(file_get_contents("php://input"), true);
-		$employee_fname	= $post_vars["first_name"];
-		$employee_lname	= $post_vars["last_name"];
-		$employee_gender = $post_vars["gender"];
-		$employee_bdate	= $post_vars["birth_date"];
-		$employee_hdate	= $post_vars["hire_date"];
-		//$employee_age=$post_vars["employee_age"];
+		$data = json_decode(file_get_contents("php://input"), true);
+		$employee_first_name = $data["first_name"];
+		$employee_last_name	= $data["last_name"];
+		$employee_email = $data["email"];
+		$employee_phone_number = $data["phone_number"];
+		$employee_hire_date = $data["hire_date"];
+		$employee_job_id = $data["job_id"];
+		$employee_salary = $data["salary"];
+		$employee_commission_pct = $data["commission_pct"];
+		$employee_manager_id = $data["manager_id"];
+		$employee_department_id = $data["department_id"];
+		//$employee_age=$data["employee_age"];
 		
-		$query = "UPDATE employees SET first_name='".$employee_fname."', last_name='".$employee_lname."', gender='".$employee_gender."', birth_date='".$employee_bdate."', hire_date='".$employee_hdate."' WHERE emp_no=".$id;
+		$query = "UPDATE employees SET first_name='".$employee_first_name."', last_name='".$employee_last_name."', email='".$employee_email."', phone_number='".$employee_phone_number."', hire_date='".$employee_hire_date."', job_id='".$employee_job_id."', salary='".$employee_salary."', commission_pct='".$employee_commission_pct."', manager_id='".$employee_manager_id."', department_id='".$employee_department_id."' WHERE employee_id=".$id;
 		
 		$result = mysqli_query($connection, $query);
 		$broj_redaka = mysqli_affected_rows($connection);
@@ -110,7 +122,7 @@ function update_employee($id)
 function delete_employee($id)
 {
 	global $connection;
-	$query = "DELETE FROM employees WHERE emp_no=".$id;
+	$query = "DELETE FROM employees WHERE employee_id=".$id;
 	if($result = mysqli_query($connection, $query))
 	{
 		$broj_redaka = mysqli_affected_rows($connection);

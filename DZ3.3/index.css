@@ -329,13 +329,13 @@ button:hover {
 }
 
 #dataModal label {
-  flex: 1;
+  flex: 2;
   margin: 5px;
   color: rgba(255, 255, 255, var(--emph-high));
 }
 
 #dataModal input {
-  flex: 4;
+  flex: 3;
   margin: 5px;
   min-width: 300px;
   background-color: var(--surface-dp-6);

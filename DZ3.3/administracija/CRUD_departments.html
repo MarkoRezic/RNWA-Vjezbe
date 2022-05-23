@@ -13,7 +13,7 @@
 <script>
 
     $(document).ready(function () {
-        setupCRUD("job", ["job_id", "job_title", "min_salary", "max_salary"])
+        setupCRUD("department", ["department_id", "department_name", "manager_id", "location_id"])
     })
 
 </script>
@@ -34,8 +34,8 @@
     <header class="nav-header surface-12">
         <nav class="navigation">
             <a href="CRUD_employees.html">Employees</a>
-            <a href="CRUD_departments.html">Departments</a>
-            <a class="active">Jobs</a>
+            <a class="active">Departments</a>
+            <a href="CRUD_jobs.html">Jobs</a>
         </nav>
     </header>
 
@@ -45,14 +45,14 @@
         <section class="main-content">
             <article>
                 <header>
-                    <h2 class="emph-medium">Poslovi pretraga JQuery</h2>
+                    <h2 class="emph-medium">Odjeli pretraga JQuery</h2>
 
                     <div class="divider surface-8"></div>
                 </header>
                 <form>
                     <input type="text" placeholder="Pretraga..." class="search surface-12" />
                 </form>
-                <button id="add-btn">ADD JOB</button>
+                <button id="add-btn">ADD DEPARTMENT</button>
                 <div id="resultDiv"></div>
             </article>
         </section>

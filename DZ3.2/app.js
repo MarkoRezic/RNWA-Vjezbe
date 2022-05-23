@@ -50,6 +50,18 @@ app.get('/employee/:id', function (req, res) {
 			return res.send({ error: false, data: results[0], message: 'Single employee list.' });
 		});
 });
+//Search employees
+app.get('/search/employees', function (req, res) {
+	let search = req.query.search
+
+	dbConn.query(
+		`SELECT * FROM employees WHERE LOWER(first_name) LIKE LOWER(?) OR LOWER(last_name) LIKE LOWER(?)`,
+		['%' + search + '%', '%' + search + '%'],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Searched employee list.' });
+		});
+});
 // Add a new employee  
 app.post('/employee', function (req, res) {
 	let employee = req.body.employee;
@@ -175,6 +187,132 @@ app.delete('/employee/:id', function (req, res) {
 
 
 
+// ==================================================== DEPARTMENT ROUTES ====================================================
+
+// Retrieve all departments 
+app.get('/departments', function (req, res) {
+	dbConn.query('SELECT * FROM departments',
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'All departments list.' });
+		});
+});
+// Retrieve department with department_id 
+app.get('/department/:id', function (req, res) {
+	let department_id = req.params.id;
+	if (!department_id) {
+		return res.status(400).send({ error: true, message: 'Please provide department_id' });
+	}
+	dbConn.query(
+		`SELECT * FROM departments WHERE department_id = ?`,
+		department_id,
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results[0], message: 'Single department list.' });
+		});
+});
+//Search departments
+app.get('/search/departments', function (req, res) {
+	let search = req.query.search
+
+	dbConn.query(
+		`SELECT * FROM departments WHERE LOWER(department_name) LIKE LOWER(?)`,
+		['%' + search + '%'],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Searched department list.' });
+		});
+});
+// Add a new department  
+app.post('/department', function (req, res) {
+	let department = req.body.department;
+	let department_id = department.department_id;
+	let department_name = department.department_name;
+	let manager_id = department.manager_id;
+	let location_id = department.location_id;
+
+	if (!department) {
+		return res.status(400).send({ error: true, message: 'Please provide department' });
+	}
+	dbConn.query(
+		`INSERT INTO departments 
+		(department_id, department_name, manager_id, location_id)
+		VALUES(?, ?, ?, ?)`,
+		[department_id, department_name, manager_id, location_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'New Department has been created successfully.' });
+		});
+});
+//  Update department with department_id in body
+app.put('/department', function (req, res) {
+	console.log('body :', req.body.department);
+	let department = req.body.department;
+	let department_id = department.department_id;
+	let department_name = department.department_name;
+	let manager_id = department.manager_id;
+	let location_id = department.location_id;
+
+	if (department_id == null || department == null) {
+		return res.status(400).send({ error: department, message: 'Please provide department and department_id' });
+	}
+	dbConn.query(
+		`UPDATE departments 
+		SET department_name = ?, 
+		manager_id = ?, 
+		location_id = ?
+		WHERE department_id = ?`,
+		[department_name, manager_id, location_id, department_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Department has been updated successfully.' });
+		});
+});
+//  Update department with department_id in params
+app.put('/department/:id', function (req, res) {
+	let department_id = req.params.id;
+	if (department_id == null) {
+		return res.status(400).send({ error: department, message: 'Please provide department_id in url' });
+	}
+
+	console.log('body :', req.body.department);
+	let department = req.body.department;
+	let department_name = department.department_name;
+	let manager_id = department.manager_id;
+	let location_id = department.location_id;
+
+	if (department == null) {
+		return res.status(400).send({ error: department, message: 'Please provide department' });
+	}
+	dbConn.query(
+		`UPDATE departments 
+		SET department_name = ?, 
+		manager_id = ?, 
+		location_id = ?
+		WHERE department_id = ?`,
+		[department_name, manager_id, location_id, department_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Department has been updated successfully.' });
+		});
+});
+//  Delete department
+app.delete('/department/:id', function (req, res) {
+	let department_id = req.params.id;
+	if (department_id == null) {
+		return res.status(400).send({ error: true, message: 'Please provide department_id' });
+	}
+	dbConn.query(
+		`DELETE FROM departments WHERE department_id = ?`,
+		[department_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Department  has been deleted successfully.' });
+		});
+});
+
+
+
 // ==================================================== JOB ROUTES ====================================================
 
 // Retrieve all jobs 
@@ -205,7 +343,7 @@ app.get('/search/jobs', function (req, res) {
 
 	dbConn.query(
 		`SELECT * FROM jobs WHERE LOWER(job_title) LIKE LOWER(?)`,
-		'%' + search + '%',
+		['%' + search + '%'],
 		function (error, results, fields) {
 			if (error) throw error;
 			return res.send({ error: false, data: results, message: 'Searched job list.' });

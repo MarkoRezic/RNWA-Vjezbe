@@ -349,7 +349,18 @@ button:hover {
 }
 
 #dataModal.view #update-btn,
-#dataModal.view #delete-btn {
+#dataModal.view #delete-btn,
+#dataModal.add #update-btn,
+#dataModal.add #delete-btn,
+#dataModal.add #close-btn {
+  display: none;
+}
+
+#dataModal.add #create-btn {
+  display: block;
+}
+
+#create-btn {
   display: none;
 }
 

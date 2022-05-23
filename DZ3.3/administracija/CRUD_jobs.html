@@ -51,6 +51,7 @@
 
                     $("#dataModal").children(".input-row").children("input").attr("disabled", "disabled")
                     $("#dataModal").addClass("view")
+                    $("#dataModal").removeClass("add")
                     $("#dataModal").removeClass("display-none")
                     $("#modalCover").removeClass("display-none")
                 })
@@ -119,6 +120,7 @@
 
                                                 $("#dataModal").children(".input-row").children("input").attr("disabled", "disabled")
                                                 $("#dataModal").addClass("view")
+                                                $("#dataModal").removeClass("add")
                                                 $("#dataModal").removeClass("display-none")
                                                 $("#modalCover").removeClass("display-none")
                                             })
@@ -137,6 +139,7 @@
 
                                                 $("#dataModal").children(".input-row").children("input").removeAttr("disabled")
                                                 $("#dataModal").removeClass("view")
+                                                $("#dataModal").removeClass("add")
                                                 $("#dataModal").removeClass("display-none")
                                                 $("#modalCover").removeClass("display-none")
                                             })
@@ -200,6 +203,7 @@
 
                                                 $("#dataModal").children(".input-row").children("input").attr("disabled", "disabled")
                                                 $("#dataModal").addClass("view")
+                                                $("#dataModal").removeClass("add")
                                                 $("#dataModal").removeClass("display-none")
                                                 $("#modalCover").removeClass("display-none")
                                             })
@@ -218,6 +222,7 @@
 
                                                 $("#dataModal").children(".input-row").children("input").removeAttr("disabled")
                                                 $("#dataModal").removeClass("view")
+                                                $("#dataModal").removeClass("add")
                                                 $("#dataModal").removeClass("display-none")
                                                 $("#modalCover").removeClass("display-none")
                                             })
@@ -239,6 +244,7 @@
 
                     $("#dataModal").children(".input-row").children("input").removeAttr("disabled")
                     $("#dataModal").removeClass("view")
+                    $("#dataModal").removeClass("add")
                     $("#dataModal").removeClass("display-none")
                     $("#modalCover").removeClass("display-none")
                 })
@@ -248,11 +254,113 @@
             console.log(data)
         });
 
+        $("#add-btn").click(function addModal() {
+
+            $("#dataModal").removeClass("view")
+            $("#dataModal").addClass("add")
+            $("#dataModal").removeClass("display-none")
+            $("#modalCover").removeClass("display-none")
+        })
+
+        $("#create-btn").click(function updateJob() {
+            $.post(`http://localhost:3001/job`, {
+                "job": {
+                    "job_id": $("#job_id_input").val(),
+                    "job_title": $("#job_title_input").val(),
+                    "min_salary": $("#min_salary_input").val(),
+                    "max_salary": $("#max_salary_input").val()
+                }
+            },
+                function (data) {
+
+                    var str = $(".search").val();
+
+                    $.get("http://localhost:3001/search/jobs?search=" + str, function (data) {
+                        let htmlString =
+                            `<table class='data-table'>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Job Title</th>
+                                            <th>Min Salary</th>
+                                            <th>Max Salary</th>
+                                            <th>Actions</th>
+                                        </tr>`
+                        for (let i = 0; i < data.data.length; i++) {
+                            let job = data.data[i]
+                            htmlString +=
+                                `<tr>
+                                            <td>${job.job_id}</td>
+                                            <td>${job.job_title}</td>
+                                            <td>${job.min_salary}</td>
+                                            <td>${job.max_salary}</td>
+                                            <td><button id=view-${job.job_id}>VIEW</button><button id=edit-${job.job_id}>EDIT</button></td>
+                                        </tr>`
+                        }
+                        htmlString += `</table>`
+                        $("#resultDiv").html(htmlString);
+                        for (let i = 0; i < data.data.length; i++) {
+                            let job_id = data.data[i].job_id
+
+                            $(`#view-${job_id}`).click(function hideModal() {
+
+                                $.get(`http://localhost:3001/job/${job_id}`, function (data) {
+                                    let job = data.data
+                                    $("#job_id_input").val(job.job_id)
+                                    $("#job_title_input").val(job.job_title)
+                                    $("#min_salary_input").val(job.min_salary)
+                                    $("#max_salary_input").val(job.max_salary)
+                                    console.log(job)
+                                });
+
+
+                                $("#dataModal").children(".input-row").children("input").attr("disabled", "disabled")
+                                $("#dataModal").addClass("view")
+                                $("#dataModal").removeClass("add")
+                                $("#dataModal").removeClass("display-none")
+                                $("#modalCover").removeClass("display-none")
+                            })
+
+                            $(`#edit-${job_id}`).click(function hideModal() {
+
+                                $.get(`http://localhost:3001/job/${job_id}`, function (data) {
+                                    let job = data.data
+                                    $("#job_id_input").val(job.job_id)
+                                    $("#job_title_input").val(job.job_title)
+                                    $("#min_salary_input").val(job.min_salary)
+                                    $("#max_salary_input").val(job.max_salary)
+                                    console.log(job)
+                                });
+
+
+                                $("#dataModal").children(".input-row").children("input").removeAttr("disabled")
+                                $("#dataModal").removeClass("view")
+                                $("#dataModal").removeClass("add")
+                                $("#dataModal").removeClass("display-none")
+                                $("#modalCover").removeClass("display-none")
+                            })
+                        }
+
+
+                        console.log(data)
+                    });
+
+                    $("#dataModal").removeClass("view")
+                    $("#dataModal").removeClass("add")
+                    $("#dataModal").addClass("display-none")
+                    $("#modalCover").addClass("display-none")
+                }
+            );
+        })
+
         $("#modalCover").click(function hideModal() {
+            $("#dataModal").removeClass("view")
+            $("#dataModal").removeClass("add")
             $("#dataModal").addClass("display-none")
             $("#modalCover").addClass("display-none")
         })
         $("#close-btn").click(function hideModal() {
+            $("#dataModal").removeClass("view")
+            $("#dataModal").removeClass("add")
             $("#dataModal").addClass("display-none")
             $("#modalCover").addClass("display-none")
         })
@@ -536,6 +644,7 @@
                 <form>
                     <input type="text" placeholder="Pretraga..." class="search surface-12" />
                 </form>
+                <button id="add-btn">ADD JOB</button>
                 <div id="resultDiv"></div>
             </article>
         </section>
@@ -566,6 +675,7 @@
         <div class="divider surface-8 mv5"></div>
 
         <div class="button-row">
+            <button id="create-btn">CREATE</button>
             <button id="close-btn">CLOSE</button>
             <button id="update-btn">UPDATE</button>
             <button id="delete-btn">DELETE</button>

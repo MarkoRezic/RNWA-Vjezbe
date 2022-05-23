@@ -2,10 +2,16 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var cors = require('cors')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(cors(
+	{
+		origin: '*'
+	}
+))
 // default route
 app.get('/', function (req, res) {
 	return res.send({ error: true, message: 'hello' })
@@ -19,6 +25,9 @@ var dbConn = mysql.createConnection({
 });
 // connect to database
 dbConn.connect();
+
+// ==================================================== EMPLOYEE ROUTES ====================================================
+
 // Retrieve all employees 
 app.get('/employees', function (req, res) {
 	dbConn.query('SELECT * FROM employees',
@@ -38,7 +47,6 @@ app.get('/employee/:id', function (req, res) {
 		employee_id,
 		function (error, results, fields) {
 			if (error) throw error;
-			//return res.send({ error: false, data: results[0], message: 'Single employee list error.' });
 			return res.send({ error: false, data: results[0], message: 'Single employee list.' });
 		});
 });
@@ -164,6 +172,134 @@ app.delete('/employee/:id', function (req, res) {
 			return res.send({ error: false, data: results, message: 'Employee  has been deleted successfully.' });
 		});
 });
+
+
+
+// ==================================================== JOB ROUTES ====================================================
+
+// Retrieve all jobs 
+app.get('/jobs', function (req, res) {
+	dbConn.query('SELECT * FROM jobs',
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'All jobs list.' });
+		});
+});
+// Retrieve job with job_id 
+app.get('/job/:id', function (req, res) {
+	let job_id = req.params.id;
+	if (!job_id) {
+		return res.status(400).send({ error: true, message: 'Please provide job_id' });
+	}
+	dbConn.query(
+		`SELECT * FROM jobs WHERE job_id = ?`,
+		job_id,
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results[0], message: 'Single job list.' });
+		});
+});
+//Search jobs
+app.get('/search/jobs', function (req, res) {
+	let search = req.query.search
+
+	dbConn.query(
+		`SELECT * FROM jobs WHERE LOWER(job_title) LIKE LOWER(?)`,
+		'%' + search + '%',
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Searched job list.' });
+		});
+});
+// Add a new job  
+app.post('/job', function (req, res) {
+	let job = req.body.job;
+	let job_id = job.job_id;
+	let job_title = job.job_title;
+	let min_salary = job.min_salary;
+	let max_salary = job.max_salary;
+
+	if (!job) {
+		return res.status(400).send({ error: true, message: 'Please provide job' });
+	}
+	dbConn.query(
+		`INSERT INTO jobs 
+		(job_id, job_title, min_salary, max_salary)
+		VALUES(?, ?, ?, ?)`,
+		[job_id, job_title, min_salary, max_salary],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'New Job has been created successfully.' });
+		});
+});
+//  Update job with job_id in body
+app.put('/job', function (req, res) {
+	console.log('body :', req.body.job);
+	let job = req.body.job;
+	let job_id = job.job_id;
+	let job_title = job.job_title;
+	let min_salary = job.min_salary;
+	let max_salary = job.max_salary;
+
+	if (job_id == null || job == null) {
+		return res.status(400).send({ error: job, message: 'Please provide job and job_id' });
+	}
+	dbConn.query(
+		`UPDATE jobs 
+		SET job_title = ?, 
+		min_salary = ?, 
+		max_salary = ?
+		WHERE job_id = ?`,
+		[job_title, min_salary, max_salary, job_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Job has been updated successfully.' });
+		});
+});
+//  Update job with job_id in params
+app.put('/job/:id', function (req, res) {
+	let job_id = req.params.id;
+	if (job_id == null) {
+		return res.status(400).send({ error: job, message: 'Please provide job_id in url' });
+	}
+
+	console.log('body :', req.body.job);
+	let job = req.body.job;
+	let job_title = job.job_title;
+	let min_salary = job.min_salary;
+	let max_salary = job.max_salary;
+
+	if (job == null) {
+		return res.status(400).send({ error: job, message: 'Please provide job' });
+	}
+	dbConn.query(
+		`UPDATE jobs 
+		SET job_title = ?, 
+		min_salary = ?, 
+		max_salary = ?
+		WHERE job_id = ?`,
+		[job_title, min_salary, max_salary, job_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Job has been updated successfully.' });
+		});
+});
+//  Delete job
+app.delete('/job/:id', function (req, res) {
+	let job_id = req.params.id;
+	if (job_id == null) {
+		return res.status(400).send({ error: true, message: 'Please provide job_id' });
+	}
+	dbConn.query(
+		`DELETE FROM jobs WHERE job_id = ?`,
+		[job_id],
+		function (error, results, fields) {
+			if (error) throw error;
+			return res.send({ error: false, data: results, message: 'Job  has been deleted successfully.' });
+		});
+});
+
+
 // set port
 app.listen(3001, function () {
 	console.log('Node MySQL REST API app is running on port 3001');

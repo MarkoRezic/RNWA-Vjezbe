@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>HR schema - Administracija - TIM 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<script>
+    $(document).ready(function () {
+        $.get("http://localhost:3001/employees", function (data) {
+            let htmlString =
+                `<table class='data-table'>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Hire Date</th>
+                    <th>Job ID</th>
+                    <th>Salary</th>
+                    <th>Commission Pact</th>
+                    <th>Manager ID</th>
+                    <th>Department ID</th>
+                    <th>Actions</th>
+                </tr>`
+            for (let i = 0; i < data.data.length; i++) {
+                let employee = data.data[i]
+                console.log(employee)
+                htmlString +=
+                    `<tr>
+                    <td>${employee.employee_id}</td>
+                    <td>${employee.first_name}</td>
+                    <td>${employee.last_name}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.phone_number}</td>
+                    <td>${employee.hire_date}</td>
+                    <td>${employee.job_id}</td>
+                    <td>${employee.salary}</td>
+                    <td>${employee.commission_pct}</td>
+                    <td>${employee.manager_id}</td>
+                    <td>${employee.department_id}</td>
+                    <td>Actions</td>
+                </tr>`
+            }
+            htmlString += `</table>`
+            $("#resultDiv").html(htmlString);
+
+            console.log(data)
+        });
+    });
+
+    $(document).ready(function () {
+        $(".search").keyup(function showHint() {
+            var str = $(".search").val();
+            $.get(
+                "http://localhost/search_zaposlenici.php?s=" + str,
+                function (data) {
+                    $("#resultDiv").html(data);
+                }
+            );
+        });
+    });
+</script>
+
+<body>
+    <header class="nav-header surface-12">
+        <nav class="navigation">
+            <a href="../index.html">Naslovna</a>
+            <a href="../odjeli.html">Odjeli</a>
+            <a href="../zaposlenici.html">Zaposlenici</a>
+            <a href="../poslovi.html">Poslovi</a>
+            <a class="active">Administracija</a>
+        </nav>
+    </header>
+
+    <div class="divider surface-8 mv5"></div>
+
+    <header class="nav-header surface-12">
+        <nav class="navigation">
+            <a class="active">Employees</a>
+            <a href="CRUD_jobs.html">Jobs</a>
+        </nav>
+    </header>
+
+    <div class="sidebar-content-wrapper">
+        <div class="sidebar"></div>
+
+        <section class="main-content">
+            <article>
+                <header>
+                    <h2 class="emph-medium">Zaposlenici pretraga JQuery</h2>
+
+                    <div class="divider surface-8"></div>
+                </header>
+                <form>
+                    <input type="text" placeholder="Pretraga..." class="search surface-12" />
+                </form>
+                <div id="resultDiv"></div>
+            </article>
+        </section>
+    </div>
+
+    <footer class="footer surface-12">
+        <p class="emph-high">© 2022 RZSoft</p>
+    </footer>
+</body>
+
+</html>

@@ -6,13 +6,11 @@ try{
 	ini_set('soap.wsdl_cache_enabled',0);
 	ini_set('soap.wsdl_cache_ttl',0);
 
-	$val = $_POST['value'];
-    $con = $_POST['conv'];
-
+	$value = $_POST['value'];
+    $conv = $_POST['conv'];
 	
 	$sClient = new SoapClient('konverter_service.wsdl');
-	$response = $sClient->converter($con, $val);
-	
+	$response = $sClient->converter($conv, $value);
 	
 	var_dump($response);
 

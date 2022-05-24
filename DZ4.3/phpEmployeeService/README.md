@@ -1,0 +1,1 @@
+Smjestiti citav folder u htdocs, zatim otvoriti http://localhost/phpEmployeeService/employeeServiceClient.php

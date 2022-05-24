@@ -29,7 +29,7 @@ function setupCRUD(data_model, data_keys) {
         let htmlString =
             `<table class='data-table'>
             <tr>`
-        for (const key of Object.keys(data.data[0])) {
+        for (const key of data_keys) {
             htmlString += `<th>${key}</th>`
         }
         htmlString +=

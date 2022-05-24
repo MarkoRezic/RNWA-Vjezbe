@@ -3,14 +3,26 @@
 
 <head>
     <title>Node REST API tehnička dokumentacija | HR Schema</title>
+    <link rel="stylesheet" href="../DZ3.3/index.css" />
     <style>
         * {
             box-sizing: border-box;
         }
 
+
         td:first-child {
-            color: #777;
+            color: rgba(255, 255, 255, var(--emph-medium));
             font-weight: bold;
+            width: 40%;
+        }
+
+        td:last-child {
+            color: rgba(255, 255, 255, var(--emph-low));
+            padding-left: 20px;
+        }
+
+        th:last-child {
+            padding-left: 20px;
         }
 
         html {
@@ -32,7 +44,6 @@
             line-height: 1.5;
             color: #212529;
             text-align: left;
-            background-color: #fff;
         }
 
         [tabindex="-1"]:focus {
@@ -42,6 +53,11 @@
         h4 {
             margin-top: 0;
             margin-bottom: .5rem;
+            background-color: var(--surface-dp-24);
+            color: #fff;
+            padding: 10px;
+            box-shadow: 0 2px 7px #444;
+            border-radius: 5px;
         }
 
         button {
@@ -296,7 +312,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="align-middle">
-                                                                    DELETE &ensp; employee/{employee_id}</td>
+                                                                    DELETE &thinsp; employee/{employee_id}</td>
                                                                 <td class="align-middle">
                                                                     Brisanje zaposlenika sa traženim {employee_id}.
                                                                 </td>
@@ -386,7 +402,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="align-middle">
-                                                                    DELETE &ensp; department/{department_id}
+                                                                    DELETE &thinsp; department/{department_id}
                                                                 </td>
                                                                 <td class="align-middle">
                                                                     Brisanje odjela sa traženim
@@ -472,7 +488,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="align-middle">
-                                                                    DELETE &ensp; job/{job_id}</td>
+                                                                    DELETE &thinsp; job/{job_id}</td>
                                                                 <td class="align-middle">
                                                                     Brisanje posla sa traženim {job_id}.
                                                                 </td>

@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <title>Konverter valuta</title>
+    <link rel="stylesheet" href="konverter.css" />
+</head>
+
+<body>
+    <div id="konverter-wrapper">
+        <h4>Konverter valuta</h4>
+        <div class="divider surface-0 mv10"></div>
+        <form id="konverter-form" name="form" method="post" action="http://localhost/wsdl_soap/client.php">
+            <div class="input-row">
+                <label for="value">Iznos</label>
+                <input id="value" name="value" type="text" />
+            </div>
+            <div class="input-row">
+                <label for="conv">Konverzija</label>
+                <select name="conv" id="conv">
+                    <option value="b_e">BAM (KM) &emsp; > &emsp; EUR (€)</option>
+                    <option value="b_h">BAM (KM) &emsp; > &emsp; HRK (kn)</option>
+                    <option value="e_b">EUR (€) &emsp; &thinsp; &thinsp; > &emsp; BAM (KM)</option>
+                    <option value="e_h">EUR (€) &emsp; &thinsp; &thinsp; > &emsp; HRK (kn)</option>
+                    <option value="h_b">HRK (kn) &emsp; &thinsp; > &emsp; BAM (KM) </option>
+                    <option value="h_e">HRK (kn) &emsp; &thinsp; > &emsp; EUR (€)</option>
+
+                </select>
+            </div>
+            <div class="divider surface-0 mv5"></div>
+            <div class="button-row">
+                <button type="submit" name="Submit">Konvertiraj</button>
+            </div>
+        </form>
+    </div>
+
+    <body>
+
+</html>

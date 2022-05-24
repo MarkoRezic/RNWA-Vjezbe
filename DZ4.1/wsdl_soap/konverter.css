@@ -1,0 +1,273 @@
+:root {
+  --surface-dp-0: #121212;
+  --surface-dp-1: #151515;
+  --surface-dp-2: #181818;
+  --surface-dp-3: #1e1e1e;
+  --surface-dp-4: #202020;
+  --surface-dp-6: #222;
+  --surface-dp-8: #252525;
+  --surface-dp-12: #333;
+  --surface-dp-16: #353535;
+  --surface-dp-24: #444;
+  --primary: #3576a8;
+  --primary-hover: #498abb;
+  --secondary: #7dc2c8;
+  --secondary-hover: #92cfd5;
+  --on-surface: #fff;
+  --on-primary: #000;
+  --on-secondary: #000;
+  --error: #cf6679;
+  --emph-high: 87%;
+  --emph-medium: 60%;
+  --emph-low: 38%;
+  --divider-h: 1px;
+  --divider-h-thick: 3px;
+}
+
+body {
+  background-color: var(--surface-dp-0);
+}
+
+* {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: var(--on-surface);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.surface-0 {
+  background-color: var(--surface-dp-0);
+}
+
+.surface-1 {
+  background-color: var(--surface-dp-1);
+}
+
+.surface-2 {
+  background-color: var(--surface-dp-2);
+}
+
+.surface-3 {
+  background-color: var(--surface-dp-3);
+}
+
+.surface-4 {
+  background-color: var(--surface-dp-4);
+}
+
+.surface-6 {
+  background-color: var(--surface-dp-6);
+}
+
+.surface-8 {
+  background-color: var(--surface-dp-8);
+}
+
+.surface-12 {
+  background-color: var(--surface-dp-12);
+}
+
+.surface-16 {
+  background-color: var(--surface-dp-16);
+}
+
+.surface-24 {
+  background-color: var(--surface-dp-24);
+}
+
+.primary-surface {
+  background-color: var(--primary);
+}
+
+.secondary-surface {
+  background-color: var(--secondary);
+}
+
+.surface-text {
+  color: var(--on-surface);
+}
+
+.primary-text {
+  color: var(--on-primary);
+}
+
+.secondary-text {
+  color: var(--on-secondary);
+}
+
+.emph-full {
+  opacity: 1;
+}
+
+.emph-high {
+  opacity: var(--emph-high);
+}
+
+.emph-medium {
+  opacity: var(--emph-medium);
+}
+
+.emph-low {
+  opacity: var(--emph-low);
+}
+
+.divider {
+  display: block;
+  width: 100%;
+  height: var(--divider-h);
+}
+
+.divider-thick {
+  height: var(--divider-h-thick);
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navigation>a {
+  text-align: center;
+  text-decoration: none;
+  padding: 8px;
+  color: rgba(255, 255, 255, var(--emph-medium));
+  cursor: pointer;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation>a:hover {
+  background-color: var(--surface-dp-16);
+  color: rgba(255, 255, 255, var(--emph-high));
+}
+
+.navigation>a.active {
+  background-color: var(--surface-dp-24);
+  color: #fff;
+}
+
+.footer {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.m5 {
+  margin: 5px;
+}
+
+.mh5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.mv5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.m10 {
+  margin: 10px;
+}
+
+.mh10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.mv10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.input-row {
+  display: flex;
+}
+
+.button-row {
+  display: flex;
+  justify-content: right;
+}
+
+input,
+select {
+  flex: 3;
+  margin: 5px;
+  min-width: 300px;
+  background-color: var(--surface-dp-6);
+  border: 2px solid var(--surface-dp-24);
+  padding: 5px;
+}
+
+select {
+  font-weight: bold;
+}
+
+label {
+  flex: 2;
+  margin: 5px;
+  color: rgba(255, 255, 255, var(--emph-high));
+}
+
+#konverter-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 2px solid var(--surface-dp-24);
+  border-radius: 5px;
+  background-color: var(--surface-dp-12);
+  width: fit-content;
+}
+
+#konverter-form {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: var(--surface-dp-24);
+}
+
+button {
+  background-color: var(--primary);
+  padding: 5px 15px;
+  margin: 0 5px;
+  border: 2px solid var(--surface-dp-12);
+  border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--primary-hover);
+  border-color: var(--surface-dp-16);
+}

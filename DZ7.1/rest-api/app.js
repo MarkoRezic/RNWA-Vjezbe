@@ -1,7 +1,16 @@
+require('dotenv').config();
+const {
+	DB_HOST,
+	DB_USERNAME,
+	DB_PASSWORD,
+	DB_DATABASE,
+	AUTH_USER,
+	AUTH_PASSWORD
+} = process.env;
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var cors = require('cors')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -18,13 +27,64 @@ app.get('/', function (req, res) {
 });
 // connection configurations
 var dbConn = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'Explorerss2!',
-	database: 'hr'
+	host: DB_HOST,
+	user: DB_USERNAME,
+	password: DB_PASSWORD,
+	database: DB_DATABASE
 });
 // connect to database
 dbConn.connect();
+
+// ==================================================== AUTH ===============================================================
+
+app.post('/*', function (req, res, next) {
+	console.log(req.headers)
+	if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
+		return res.status(401).json({ message: 'Missing Authorization Header' });
+	}
+
+	// verify auth credentials
+	const base64Credentials = req.headers.authorization.split(' ')[1];
+	console.log(base64Credentials)
+	const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+	const [username, password] = credentials.split(':');
+	console.log(username, password)
+	if (username !== AUTH_USER || password !== AUTH_PASSWORD) {
+		return res.status(401).json({ message: 'Invalid Authentication Credentials' });
+	}
+
+	next();
+})
+app.put('/*', function (req, res, next) {
+	if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
+		return res.status(401).json({ message: 'Missing Authorization Header' });
+	}
+
+	// verify auth credentials
+	const base64Credentials = req.headers.authorization.split(' ')[1];
+	const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+	const [username, password] = credentials.split(':');
+	if (username !== AUTH_USER || password !== AUTH_PASSWORD) {
+		return res.status(401).json({ message: 'Invalid Authentication Credentials' });
+	}
+
+	next();
+})
+app.delete('/*', function (req, res, next) {
+	if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
+		return res.status(401).json({ message: 'Missing Authorization Header' });
+	}
+
+	// verify auth credentials
+	const base64Credentials = req.headers.authorization.split(' ')[1];
+	const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
+	const [username, password] = credentials.split(':');
+	if (username !== AUTH_USER || password !== AUTH_PASSWORD) {
+		return res.status(401).json({ message: 'Invalid Authentication Credentials' });
+	}
+
+	next();
+})
 
 // ==================================================== EMPLOYEE ROUTES ====================================================
 

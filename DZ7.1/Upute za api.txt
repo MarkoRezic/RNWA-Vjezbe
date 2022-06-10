@@ -1,0 +1,6 @@
+potrebno je u /rest-api folder smjestiti .env datoteku
+u .env popuniti podatke za bazu i auth,
+primjer .env je u .env.example
+
+na frontendu je potrebno prije CRUD operacije unijeti username i password
+za testiranje preko Postmana potrebno je postaviti Authorization > Basic i upisati username i password koji ste postavili u .env

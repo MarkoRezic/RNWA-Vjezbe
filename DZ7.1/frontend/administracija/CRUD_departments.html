@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>HR schema - Administracija - TIM 2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./CRUD_functions.js"></script>
+  </head>
+
+  <script>
+    $(document).ready(function () {
+      setupCRUD("department", [
+        "department_id",
+        "department_name",
+        "manager_id",
+        "location_id",
+      ]);
+    });
+  </script>
+
+  <body>
+    <header class="nav-header surface-12">
+      <nav class="navigation">
+        <a href="../index.html">Naslovna</a>
+        <a href="../odjeli.html">Odjeli</a>
+        <a href="../zaposlenici.html">Zaposlenici</a>
+        <a href="../poslovi.html">Poslovi</a>
+        <a class="active">Administracija</a>
+      </nav>
+    </header>
+
+    <div class="divider surface-8 mv5"></div>
+
+    <header class="nav-header surface-12">
+      <nav class="navigation">
+        <a href="CRUD_employees.html">Employees</a>
+        <a class="active">Departments</a>
+        <a href="CRUD_jobs.html">Jobs</a>
+      </nav>
+    </header>
+
+    <div class="sidebar-content-wrapper">
+      <div class="sidebar"></div>
+
+      <section class="main-content">
+        <article>
+          <header>
+            <div class="auth-header">
+              <h2 class="emph-medium">AUTH</h2>
+              <input id="username" type="text" placeholder="username" />
+              <input id="password" type="password" placeholder="password" />
+            </div>
+            <h2 class="emph-medium">Odjeli pretraga JQuery</h2>
+
+            <div class="divider surface-8"></div>
+          </header>
+          <form>
+            <input
+              type="text"
+              placeholder="Pretraga..."
+              class="search surface-12"
+            />
+          </form>
+          <button id="add-btn">ADD DEPARTMENT</button>
+          <div id="resultDiv"></div>
+        </article>
+      </section>
+    </div>
+
+    <footer class="footer surface-12">
+      <p class="emph-high">© 2022 RZSoft</p>
+    </footer>
+    <div id="modalCover" class="display-none"></div>
+    <div id="dataModal" class="display-none"></div>
+  </body>
+</html>

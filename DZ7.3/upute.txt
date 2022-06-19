@@ -1,0 +1,8 @@
+kreirati .env i popuniti potrebne podatke
+u terminalu se smjestiti u projektni folder
+pokrenuti:
+php composer.php install
+php artisan migrate (prethodno kreirati potrebnu schemu)
+php artisan serve
+
+aplikacija bi trebala biti dostupna na http://localhost:8000
